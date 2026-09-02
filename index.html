@@ -72,6 +72,21 @@ window._vcSendCAPI = function(eventName, extraData) {
   #vc-testimonials-track { display: flex; animation: vc-marquee 38s linear infinite; width: max-content; }
   #vc-testimonials { overflow: hidden !important; padding: 0 !important; }
   #vc-testimonials:hover #vc-testimonials-track { animation-play-state: paused; }
+
+  /* ── Hero grid layout (sin inline para que media queries funcionen) ── */
+  .vc-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+    align-items: center;
+  }
+  /* ── Hero stats (flex desktop, 2x2 grid mobile) ── */
+  .vc-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
   /* Hamburger */
   #vc-hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; z-index:1100; }
   #vc-hamburger span { display:block; width:22px; height:1.5px; background:#C9A84C; transition:transform 0.3s,opacity 0.3s; }
@@ -112,20 +127,24 @@ window._vcSendCAPI = function(eventName, extraData) {
     .vc-stat-row > div:last-child { border-bottom: none !important; }
     .vc-grid-2[style*="gap:96px"] { gap: 40px !important; }
     #vc-testimonials { padding-left: 20px !important; padding-right: 0 !important; }
+    .vc-sec { padding-left: 20px !important; padding-right: 20px !important; }
+    .vc-sec > div { padding-left: 0 !important; padding-right: 0 !important; }
     footer { padding: 28px 0 !important; }
     footer .vc-inner { flex-direction: column !important; text-align: center; gap: 10px; }
     a[title="Contactar por WhatsApp"] { bottom: 20px !important; right: 16px !important; width: 50px !important; height: 50px !important; }
     a[title="Contactar por WhatsApp"] img { width: 50px !important; height: 50px !important; }
     /* Always show reveal on mobile */
     .reveal { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
-    /* Hero stats 2x2 grid */
-    .vc-hero-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 18px 12px !important; align-items: start !important; }
+    /* Hero grid: 1 columna */
+    .vc-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+    /* Hero stats: 2x2 */
+    .vc-hero-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px 16px !important; align-items: start !important; }
     .vc-hero-stats > div[style*="width:1px"] { display: none !important; }
     .vc-hero-stats > div { padding: 0 !important; }
     /* Video vertical (Shorts 9:16) */
-    .hero-video { justify-content: flex-start !important; margin-top: 8px; }
-    .hero-video > div { width: 100% !important; max-width: 100% !important; aspect-ratio: 9/16; }
-    .hero-video iframe { width: 100% !important; height: 100% !important; aspect-ratio: 9/16; }
+    .hero-video { justify-content: flex-start !important; margin-top: 0 !important; }
+    .hero-video > div { width: 100% !important; max-width: 100% !important; }
+    .hero-video iframe { width: 100% !important; height: 56vw !important; min-height: 220px; aspect-ratio: 9/16; }
   }
   @media (max-width: 480px) {
     .vc-grid-4 { grid-template-columns: 1fr !important; }
@@ -177,7 +196,7 @@ window._vcSendCAPI = function(eventName, extraData) {
 <!-- ════════════════════ HERO ════════════════════ -->
 <section style="position:relative;min-height:100vh;height:auto;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
   <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
-    <img src="uploads/portada.webp" alt="Zona Colonial" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+    <img src="uploads/portada.webp" alt="Zona Colonial" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
   </div>
   <div style="position:absolute;inset:0;z-index:1;background:rgba(10,10,10,0.1);"></div>
   <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,10,10,0.01) 0%,rgba(10,10,10,0.08) 40%,rgba(10,10,10,0.52) 75%,rgba(10,10,10,0.72) 100%);"></div>
@@ -196,7 +215,7 @@ window._vcSendCAPI = function(eventName, extraData) {
       <a href="https://api.leadconnectorhq.com/widget/booking/fyFRE1YX69J54ywnu73d" target="_blank" rel="noopener" style="border:1px solid #C9A84C;color:#C9A84C;padding:16px 48px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;transition:background 0.28s,color 0.28s;" style-hover="background:#C9A84C;color:#0A0A0A;cursor:pointer;">
         Coordinar Reunión
       </a>
-      <div class="vc-hero-stats" style="display:flex;align-items:center;gap:0;flex-wrap:wrap;">
+      <div class="vc-hero-stats">
         <div style="padding:0 32px 0 0;text-align:left;">
           <div style="font-size:9px;letter-spacing:0.18em;color:#fff;text-transform:uppercase;margin-bottom:5px;">Vendido</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#C9A84C;font-weight:400;letter-spacing:0.03em;">85%</div>
@@ -259,7 +278,7 @@ window._vcSendCAPI = function(eventName, extraData) {
 
 <section id="vc-why"></section>
 <!-- ════════════════════ WHY INVEST ════════════════════ -->
-<section style="background:#0A0A0A;padding:128px 64px;">
+<section class="vc-sec" style="background:#0A0A0A;padding:128px 64px;">
   <div style="max-width:1360px;margin:0 auto;">
     <div class="reveal" style="margin-bottom:80px;">
       <div style="font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:#C9A84C;margin-bottom:22px;">La Oportunidad</div>
@@ -308,7 +327,7 @@ window._vcSendCAPI = function(eventName, extraData) {
 
 <section id="vc-suites"></section>
 <!-- ════════════════════ AMENIDADES ════════════════════ -->
-<section style="background:#0A0A0A;padding:0;">
+<section class="vc-sec" style="background:#0A0A0A;padding:0;">
   <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;" class="vc-grid-2">
     <!-- Left: text + amenities -->
     <div class="vc-suites-text" style="padding:96px 64px;display:flex;flex-direction:column;justify-content:center;">
@@ -535,7 +554,7 @@ window._vcSendCAPI = function(eventName, extraData) {
 
 <section id="vc-nexum"></section>
 <!-- ════════════════════ NEXUM ════════════════════ -->
-<section style="background:#0A0A0A;padding:128px 64px;">
+<section class="vc-sec" style="background:#0A0A0A;padding:128px 64px;">
   <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;" class="vc-grid-2">
     <div>
       <div style="font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:#C9A84C;margin-bottom:24px;">Gestión Hotelera Internacional</div>
@@ -598,7 +617,7 @@ window._vcSendCAPI = function(eventName, extraData) {
 <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(201,168,76,0.28) 25%,rgba(201,168,76,0.28) 75%,transparent 100%);"></div>
 
 <!-- ════════════════════ CONSTRUCTORA PÁEZ ════════════════════ -->
-<section style="background:#0E0E0E;padding:128px 64px;">
+<section class="vc-sec" style="background:#0E0E0E;padding:128px 64px;">
   <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;" class="vc-grid-2">
     <div>
       <div style="font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:#C9A84C;margin-bottom:22px;">El Desarrollador</div>
@@ -745,14 +764,6 @@ class Component extends DCLogic {
       lb.addEventListener('click', closeLb);
       lbClose.addEventListener('click', closeLb);
       this._closeLb = closeLb;
-    }
-
-    // Hamburger menu (backup listener alongside template onClick)
-    const hamburgerEl = document.getElementById('vc-hamburger');
-    const mobileMenuEl = document.getElementById('vc-mobile-menu');
-    if (hamburgerEl) hamburgerEl.addEventListener('click', () => this._toggleMenu());
-    if (mobileMenuEl) {
-      mobileMenuEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => this._closeMenu()));
     }
 
     // Track CTA clicks → Lead event (Pixel + CAPI)
