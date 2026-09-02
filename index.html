@@ -138,8 +138,8 @@ window._vcSendCAPI = function(eventName, extraData) {
     footer .vc-inner { flex-direction: column !important; text-align: center; gap: 10px; }
     a[title="Contactar por WhatsApp"] { bottom: 20px !important; right: 16px !important; width: 50px !important; height: 50px !important; }
     a[title="Contactar por WhatsApp"] img { width: 50px !important; height: 50px !important; }
-    /* Inversión Inteligente → negro en mobile */
-    .hero-inversion { color: #0A0A0A !important; }
+    /* Inversión Inteligente → oscuro en mobile */
+    .hero-inversion { color: #111111 !important; }
     /* Always show reveal on mobile */
     .reveal { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
     /* Hero grid: 1 columna */
@@ -148,10 +148,10 @@ window._vcSendCAPI = function(eventName, extraData) {
     .vc-hero-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px 16px !important; align-items: start !important; }
     .vc-hero-stats > div[style*="width:1px"] { display: none !important; }
     .vc-hero-stats > div { padding: 0 !important; }
-    /* Video vertical (Shorts 9:16) */
-    .hero-video { justify-content: flex-start !important; margin-top: 0 !important; }
-    .hero-video > div { width: 100% !important; max-width: 100% !important; }
-    .hero-video iframe { width: 100% !important; height: 56vw !important; min-height: 220px; aspect-ratio: 9/16; }
+    /* Video vertical (Shorts 9:16) — ancho fijo centrado */
+    .hero-video { justify-content: center !important; margin-top: 0 !important; }
+    .hero-video > div { width: 210px !important; max-width: 58vw !important; }
+    .hero-video iframe { width: 210px !important; max-width: 58vw !important; height: 373px !important; }
   }
   @media (max-width: 480px) {
     .vc-grid-4 { grid-template-columns: 1fr !important; }
