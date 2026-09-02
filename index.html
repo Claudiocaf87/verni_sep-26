@@ -138,6 +138,9 @@ window._vcSendCAPI = function(eventName, extraData) {
     footer .vc-inner { flex-direction: column !important; text-align: center; gap: 10px; }
     a[title="Contactar por WhatsApp"] { bottom: 20px !important; right: 16px !important; width: 50px !important; height: 50px !important; }
     a[title="Contactar por WhatsApp"] img { width: 50px !important; height: 50px !important; }
+    /* Hero overlay más oscuro en mobile */
+    .vc-hero-overlay1 { background: rgba(10,10,10,0.3) !important; }
+    .vc-hero-overlay2 { background: linear-gradient(180deg,rgba(10,10,10,0.18) 0%,rgba(10,10,10,0.38) 40%,rgba(10,10,10,0.72) 75%,rgba(10,10,10,0.88) 100%) !important; }
     /* Inversión Inteligente → oscuro en mobile */
     .hero-inversion { color: #111111 !important; }
     /* Always show reveal on mobile */
@@ -148,10 +151,10 @@ window._vcSendCAPI = function(eventName, extraData) {
     .vc-hero-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px 16px !important; align-items: start !important; }
     .vc-hero-stats > div[style*="width:1px"] { display: none !important; }
     .vc-hero-stats > div { padding: 0 !important; }
-    /* Video vertical (Shorts 9:16) — ancho fijo centrado, iframe clickeable directo */
+    /* Video vertical (Shorts 9:16) — ancho fijo centrado, modal en mobile */
     .hero-video { justify-content: center !important; margin-top: 0 !important; }
-    .hero-video > div { width: 210px !important; max-width: 58vw !important; cursor: default !important; }
-    .hero-video iframe { width: 210px !important; max-width: 58vw !important; height: 373px !important; pointer-events: auto !important; }
+    .hero-video > div { width: 210px !important; max-width: 58vw !important; cursor: pointer !important; }
+    .hero-video iframe { width: 210px !important; max-width: 58vw !important; height: 373px !important; pointer-events: none !important; }
   }
   @media (max-width: 480px) {
     .vc-grid-4 { grid-template-columns: 1fr !important; }
@@ -172,6 +175,13 @@ window._vcSendCAPI = function(eventName, extraData) {
 <div id="vc-lightbox">
   <button id="vc-lightbox-close">✕</button>
   <img id="vc-lightbox-img" alt="">
+</div>
+
+<div id="vc-video-modal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;">
+  <button id="vc-video-modal-close" style="position:absolute;top:20px;right:24px;background:none;border:none;color:#C9A84C;font-size:36px;cursor:pointer;font-family:serif;line-height:1;">✕</button>
+  <div style="width:88vw;max-width:380px;aspect-ratio:9/16;background:#000;overflow:hidden;">
+    <iframe id="vc-video-modal-iframe" src="" width="100%" height="100%" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="" style="display:block;width:100%;height:100%;border:none;"></iframe>
+  </div>
 </div>
 
 <a href="https://wa.link/m0sdyn" target="_blank" rel="noopener" style="position:fixed;bottom:28px;right:28px;z-index:9980;width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:50%;box-shadow:0 4px 20px rgba(0,0,0,0.45);transition:transform 0.2s;" style-hover="transform:scale(1.08);" title="Contactar por WhatsApp">
@@ -207,8 +217,8 @@ window._vcSendCAPI = function(eventName, extraData) {
     <img src="uploads/portada.webp" alt="Zona Colonial" class="vc-hero-img-desk" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
     <img src="uploads/verni portada movil.webp" alt="Zona Colonial" class="vc-hero-img-mob" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:none;">
   </div>
-  <div style="position:absolute;inset:0;z-index:1;background:rgba(10,10,10,0.1);"></div>
-  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,10,10,0.01) 0%,rgba(10,10,10,0.08) 40%,rgba(10,10,10,0.52) 75%,rgba(10,10,10,0.72) 100%);"></div>
+  <div class="vc-hero-overlay1" style="position:absolute;inset:0;z-index:1;background:rgba(10,10,10,0.1);"></div>
+  <div class="vc-hero-overlay2" style="position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,10,10,0.01) 0%,rgba(10,10,10,0.08) 40%,rgba(10,10,10,0.52) 75%,rgba(10,10,10,0.72) 100%);"></div>
   <div style="position:relative;z-index:3;max-width:1360px;margin:0 auto;width:100%;padding:100px 64px 80px;display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center;" class="vc-hero-pad vc-hero-grid">
     <div>
     <div class="hero-rule" style="width:52px;height:1px;background:#C9A84C;margin-bottom:44px;"></div>
@@ -775,6 +785,20 @@ class Component extends DCLogic {
       this._closeLb = closeLb;
     }
 
+    // Video modal close
+    const videoModal = document.getElementById('vc-video-modal');
+    const videoModalClose = document.getElementById('vc-video-modal-close');
+    if (videoModal && videoModalClose) {
+      const closeVideoModal = () => {
+        videoModal.style.display = 'none';
+        const mIframe = document.getElementById('vc-video-modal-iframe');
+        if (mIframe) mIframe.src = '';
+        document.body.style.overflow = '';
+      };
+      videoModalClose.addEventListener('click', closeVideoModal);
+      videoModal.addEventListener('click', (ev) => { if (ev.target === videoModal) closeVideoModal(); });
+    }
+
     // Track CTA clicks → Lead event (Pixel + CAPI)
     document.querySelectorAll('a[href*="wa.link"], a[href*="leadconnectorhq.com"]').forEach(function(el) {
       el.addEventListener('click', function() {
@@ -804,7 +828,16 @@ class Component extends DCLogic {
   }
 
   _expandVideo(e) {
-    if (window.innerWidth <= 768) return; // mobile: YouTube maneja el click directo
+    if (window.innerWidth <= 768) {
+      // Mobile: abrir modal popup
+      const modal = document.getElementById('vc-video-modal');
+      const mIframe = document.getElementById('vc-video-modal-iframe');
+      if (!modal || !mIframe) return;
+      mIframe.src = 'https://www.youtube.com/embed/ehLioZ5WCws?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      return;
+    }
     const wrap = document.getElementById('vc-video-wrap');
     const iframe = document.getElementById('vc-video-iframe');
     if (!wrap) return;
