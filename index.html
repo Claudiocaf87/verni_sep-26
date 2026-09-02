@@ -138,6 +138,8 @@ window._vcSendCAPI = function(eventName, extraData) {
     footer .vc-inner { flex-direction: column !important; text-align: center; gap: 10px; }
     a[title="Contactar por WhatsApp"] { bottom: 20px !important; right: 16px !important; width: 50px !important; height: 50px !important; }
     a[title="Contactar por WhatsApp"] img { width: 50px !important; height: 50px !important; }
+    /* Inversión Inteligente → negro en mobile */
+    .hero-inversion { color: #0A0A0A !important; }
     /* Always show reveal on mobile */
     .reveal { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
     /* Hero grid: 1 columna */
@@ -211,7 +213,7 @@ window._vcSendCAPI = function(eventName, extraData) {
     <div>
     <div class="hero-rule" style="width:52px;height:1px;background:#C9A84C;margin-bottom:44px;"></div>
     <h1 class="hero-h1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.8vw,68px);font-weight:300;line-height:1.07;letter-spacing:0.07em;text-transform:uppercase;color:#fff;max-width:900px;margin-bottom:28px;">
-      Su <em style="font-style:italic;font-weight:600;color:#C9A84C;letter-spacing:0.05em;">Inversión Inteligente</em><br>
+      Su <em style="font-style:italic;font-weight:600;color:#C9A84C;letter-spacing:0.05em;" class="hero-inversion">Inversión Inteligente</em><br>
       en el Corazón de<br>
       La Zona Colonial
     </h1>
@@ -219,7 +221,7 @@ window._vcSendCAPI = function(eventName, extraData) {
       No vendemos metros cuadrados, sino un activo financiero diseñado para generar rentabilidad en dólares y plusvalía sostenida en el enclave más histórico del Caribe.
     </p>
     <div class="hero-cta" style="display:flex;align-items:center;gap:52px;flex-wrap:wrap;">
-      <a href="https://api.leadconnectorhq.com/widget/booking/fyFRE1YX69J54ywnu73d" target="_blank" rel="noopener" style="border:1px solid #C9A84C;color:#C9A84C;padding:16px 48px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;transition:background 0.28s,color 0.28s;" style-hover="background:#C9A84C;color:#0A0A0A;cursor:pointer;">
+      <a href="https://api.leadconnectorhq.com/widget/booking/fyFRE1YX69J54ywnu73d" target="_blank" rel="noopener" style="border:1px solid #C9A84C;background:#C9A84C;color:#0A0A0A;padding:16px 48px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;transition:background 0.28s,color 0.28s;" style-hover="background:transparent;color:#C9A84C;cursor:pointer;">
         Coordinar Reunión
       </a>
       <div class="vc-hero-stats">
