@@ -148,10 +148,10 @@ window._vcSendCAPI = function(eventName, extraData) {
     .vc-hero-stats { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px 16px !important; align-items: start !important; }
     .vc-hero-stats > div[style*="width:1px"] { display: none !important; }
     .vc-hero-stats > div { padding: 0 !important; }
-    /* Video vertical (Shorts 9:16) — ancho fijo centrado */
+    /* Video vertical (Shorts 9:16) — ancho fijo centrado, iframe clickeable directo */
     .hero-video { justify-content: center !important; margin-top: 0 !important; }
-    .hero-video > div { width: 210px !important; max-width: 58vw !important; }
-    .hero-video iframe { width: 210px !important; max-width: 58vw !important; height: 373px !important; }
+    .hero-video > div { width: 210px !important; max-width: 58vw !important; cursor: default !important; }
+    .hero-video iframe { width: 210px !important; max-width: 58vw !important; height: 373px !important; pointer-events: auto !important; }
   }
   @media (max-width: 480px) {
     .vc-grid-4 { grid-template-columns: 1fr !important; }
@@ -804,6 +804,7 @@ class Component extends DCLogic {
   }
 
   _expandVideo(e) {
+    if (window.innerWidth <= 768) return; // mobile: YouTube maneja el click directo
     const wrap = document.getElementById('vc-video-wrap');
     const iframe = document.getElementById('vc-video-iframe');
     if (!wrap) return;
