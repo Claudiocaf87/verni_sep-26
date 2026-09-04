@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="icon" type="image/jpeg" href="./uploads/favicon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -197,7 +198,7 @@ window._vcSendCAPI = function(eventName, extraData) {
     <a href="#vc-suites" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:400;transition:color 0.2s;" style-hover="color:#C9A84C;">Las Suites</a>
     <a href="#vc-proceso" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:400;transition:color 0.2s;" style-hover="color:#C9A84C;">Proceso</a>
     <a href="#vc-nexum" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:400;transition:color 0.2s;" style-hover="color:#C9A84C;">Gestión</a>
-    <a href="#contacto" style="border:1px solid #C9A84C;background:#C9A84C;color:#0A0A0A;padding:10px 24px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;transition:background 0.25s,color 0.25s;" style-hover="background:transparent;color:#C9A84C;">Coordinar Reunión</a>
+    <a href="https://api.leadconnectorhq.com/widget/booking/VNHHHLdssf4iUQcQvVb1" target="_blank" rel="noopener" style="border:1px solid #C9A84C;background:#C9A84C;color:#0A0A0A;padding:10px 24px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;transition:background 0.25s,color 0.25s;" style-hover="background:transparent;color:#C9A84C;">Coordinar Reunión</a>
   </div>
 </nav>
 <div id="vc-mobile-menu">
@@ -260,7 +261,7 @@ window._vcSendCAPI = function(eventName, extraData) {
     </div>
     <div class="hero-video" style="display:flex;align-items:center;justify-content:center;flex-shrink:0;">
       <div id="vc-video-wrap" style="width:260px;border:1px solid rgba(201,168,76,0.22);box-shadow:0 24px 64px rgba(0,0,0,0.65);overflow:hidden;background:#000;transition:all 0.3s ease;cursor:pointer;" onClick="{{ expandVideo }}">
-        <iframe id="vc-video-iframe" src="https://www.youtube.com/embed/ehLioZ5WCws?rel=0&amp;modestbranding=1&amp;playsinline=1" width="260" height="462" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="" loading="lazy" title="Verni Colonial" style="display:block;width:100%;border:none;pointer-events:none;"></iframe>
+        <iframe id="vc-video-iframe" src="https://www.youtube.com/embed/J4jWjn8abUI?rel=0&amp;modestbranding=1&amp;playsinline=1" width="260" height="462" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="" loading="lazy" title="Verni Colonial" style="display:block;width:100%;border:none;pointer-events:none;"></iframe>
       </div>
     </div>
   </div>
@@ -831,7 +832,7 @@ class Component extends DCLogic {
       const modal = document.getElementById('vc-video-modal');
       const mIframe = document.getElementById('vc-video-modal-iframe');
       if (!modal || !mIframe) return;
-      mIframe.src = 'https://www.youtube.com/embed/ehLioZ5WCws?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+      mIframe.src = 'https://www.youtube.com/embed/J4jWjn8abUI?rel=0&modestbranding=1&playsinline=1&autoplay=1';
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
       return;
